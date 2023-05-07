@@ -10,6 +10,7 @@ import { Storage } from '@ionic/storage-angular';
 export class TodayPage implements OnInit {
   incomeMap = new Map<string, number>();
   expenseMap = new Map<string, number>();
+  combinedMap = new Map<string, Map<string,number>>();
   saveStatus: string = "Save";
 
   constructor(private ac: AlertController,
@@ -19,7 +20,7 @@ export class TodayPage implements OnInit {
   //why is javascript like this
   ngOnInit() {
     this.setDateValue();
-
+    this.loadStr();
   }
 
   incomeName: string="";
@@ -71,10 +72,23 @@ export class TodayPage implements OnInit {
 
   async onSave() {
     await this.str.create();
-    await this.str.set("Income", this.incomeMap);
-    await this.str.set("Expense", this.expenseMap);
+    this.combinedMap.set("Income", this.incomeMap);
+    this.combinedMap.set("Expense", this.expenseMap);
+    await this.str.set(this.dateString, this.combinedMap);
 
     this.saveStatus = "Saved!";
+  }
+
+  async loadStr() {
+    await this.str.create();
+    this.combinedMap = await this.str.get(this.dateString);
+    if(this.combinedMap.get("Income") !== undefined) {
+      this.incomeMap = this.combinedMap.get("Income")!;
+    }
+    if(this.combinedMap.get("Expense") !== undefined) {
+      this.expenseMap = this.combinedMap.get("Expense")!;
+    }
+
   }
 
 //Dates
