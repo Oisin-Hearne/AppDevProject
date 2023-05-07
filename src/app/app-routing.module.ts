@@ -10,7 +10,19 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },  {
+    path: 'today',
+    loadChildren: () => import('./today/today.module').then( m => m.TodayPageModule)
   },
+  {
+    path: 'month',
+    loadChildren: () => import('./month/month.module').then( m => m.MonthPageModule)
+  },
+  {
+    path: 'exchange',
+    loadChildren: () => import('./exchange/exchange.module').then( m => m.ExchangePageModule)
+  },
+
 ];
 
 @NgModule({

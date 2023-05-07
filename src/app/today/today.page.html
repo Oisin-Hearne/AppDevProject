@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Today's Budget</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Today's Budget</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <!--
+    <ion-datetime-button datetime="today"></ion-datetime-button>
+    <ion-datetime id="today" [value]="dateTime" displayFormat="MMM, DD, YYYY"></ion-datetime>
+    -->
+
+    <ion-grid>
+      <ion-row>
+        <ion-col><h3><u>Today's Budget - {{dateString}}</u></h3></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col><h5>Income</h5></ion-col>
+        <ion-col><h5>Expenditure</h5></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Item</ion-col>
+        <ion-col>€</ion-col>
+        <ion-col>Item</ion-col>
+        <ion-col>€</ion-col>
+      </ion-row>
+      <ion-row > 
+        <ion-col style="background-color: transparent; border: 0px;">
+          <ion-row *ngFor="let x of incomeMap | keyvalue">
+            <ion-col id="income">{{x.key}}</ion-col>
+            <ion-col id="income">{{x.value}}</ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col style="background-color: transparent; border: 0px;">
+          <ion-row *ngFor="let x of expenseMap | keyvalue">
+            <ion-col id="expenditure">{{x.key}}</ion-col>
+            <ion-col id="expenditure">{{x.value}}</ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col style="background-color: transparent; border: 0px;"><ion-button (click)="addIncome()">Add Income</ion-button></ion-col>
+        <ion-col style="background-color: transparent; border: 0px;"><ion-button (click)="addExpense()">Add Expense</ion-button></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col style="background-color: transparent; border: 0px;"><ion-button (click)="onSave()">{{saveStatus}}</ion-button></ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+</ion-content>

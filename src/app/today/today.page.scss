@@ -1,0 +1,20 @@
+ion-col {
+    text-align:center;
+    border: solid 1px black;
+    background-color: lightsteelblue;
+}
+
+#income {
+    background-color: palegreen;
+}
+
+#expenditure {
+    background-color: palevioletred;
+}
+
+ion-grid {
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+    height: 75%;
+}
