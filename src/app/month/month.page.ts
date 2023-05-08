@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
+import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 
 @Component({
   selector: 'app-month',
@@ -17,6 +18,8 @@ export class MonthPage implements OnInit {
   expenseTotal: number = 0;
   expenseDailyTotal: number = 0;
   tempDate: string ="";
+
+  fileString: string = "";
 
   constructor(private str: Storage) { }
 
@@ -71,6 +74,31 @@ export class MonthPage implements OnInit {
     }
   }
 
+  //Creates a string for all the data and writes it to a file in the Documents directory, if it exists.
+  async fileSave() {
+
+    //Create string
+    this.fileString += "Income:\n";
+    this.dailyIncome.forEach((value, key) => {
+      this.fileString += key+" - "+value+"€\n";
+    });
+
+    this.fileString += "\nExpenditure:\n";
+    this.dailyExpense.forEach((value, key) => {
+      this.fileString += key+" - "+value+"€\n";
+    });
+
+    this.fileString += "\nTotal Income: "+this.incomeTotal+"€\nTotal Expenditure: "+this.expenseTotal+"€";
+
+    //Plugin Implementation - FileSystem. Used this to allow the user to save budget results as a txt.
+    await Filesystem.writeFile({
+      path: '/Budget-'+this.dateString+'.txt',
+      directory: Directory.Documents,
+      encoding: Encoding.UTF8,
+      data: this.fileString,
+    });
+  }
+
 //Dates
 date: any;
 dateString: string = "";
@@ -85,7 +113,6 @@ setDateValue() {
   this.year = this.date.getFullYear();
 
   this.dateString = this.month+"/"+this.year; //Date is only month/year in this page to work with loadMonth function.
+
 }
-
-
 }

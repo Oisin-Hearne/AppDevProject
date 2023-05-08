@@ -43,6 +43,11 @@
         <ion-col>Total Expenditure:</ion-col>
         <ion-col>{{expenseTotal}}€</ion-col>
       </ion-row>
+      <ion-row>
+        <ion-col style="background-color: transparent; border: 0px;">
+          <ion-button (click)="fileSave()">Save to File</ion-button>
+        </ion-col>
+      </ion-row>
     </ion-grid>
   </div>
 </ion-content>
