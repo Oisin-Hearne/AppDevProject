@@ -2,6 +2,7 @@
   <ion-toolbar>
     <ion-title>Monthly Overview</ion-title>
   </ion-toolbar>
+  <ion-back-button></ion-back-button>
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -10,4 +11,38 @@
       <ion-title size="large">Monthly Overview</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <div id="container">
+    <ion-grid>
+      <ion-row>
+        <ion-col><h3><u>Monthly Budget - {{dateString}}</u></h3></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Income</ion-col>
+        <ion-col>€</ion-col>
+        <ion-col>Expenditure</ion-col>
+        <ion-col>€</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col style="background-color: transparent; border: 0px;">
+          <ion-row *ngFor="let x of dailyIncome | keyvalue">
+            <ion-col id="income">{{x.key}}</ion-col>
+            <ion-col id="income">{{x.value}}</ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col style="background-color: transparent; border: 0px;">
+          <ion-row *ngFor="let x of dailyExpense | keyvalue">
+            <ion-col id="expenditure">{{x.key}}</ion-col>
+            <ion-col id="expenditure">{{x.value}}</ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Total Income:</ion-col>
+        <ion-col>{{incomeTotal}}€</ion-col>
+        <ion-col>Total Expenditure:</ion-col>
+        <ion-col>{{expenseTotal}}€</ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

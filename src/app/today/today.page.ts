@@ -20,6 +20,7 @@ export class TodayPage implements OnInit {
   //why is javascript like this
   ngOnInit() {
     this.setDateValue();
+    
     this.loadStr();
   }
 
@@ -70,6 +71,7 @@ export class TodayPage implements OnInit {
     this.cd.detectChanges();
   }
 
+  //Save income & expense data to ionic storage
   async onSave() {
     await this.str.create();
     this.combinedMap.set("Income", this.incomeMap);
@@ -79,17 +81,24 @@ export class TodayPage implements OnInit {
     this.saveStatus = "Saved!";
   }
 
-  async loadStr() {
+   async loadStr() {
     await this.str.create();
-    this.combinedMap = await this.str.get(this.dateString);
-    if(this.combinedMap.get("Income") !== undefined) {
-      this.incomeMap = this.combinedMap.get("Income")!;
-    }
-    if(this.combinedMap.get("Expense") !== undefined) {
-      this.expenseMap = this.combinedMap.get("Expense")!;
-    }
 
-  }
+    //Check if there's any data present within storage. If there is, set ocmbinedMap to result.
+    await this.str.get(this.dateString).then(result => {
+      if(result)
+        this.combinedMap = result;
+      else
+        console.log("No data exists yet!");
+    });
+
+    //Check if there's any income/expense data specifically. 
+    if(this.combinedMap.get("Income"))
+      this.incomeMap = this.combinedMap.get("Income")!;
+    if(this.combinedMap.get("Expense"))
+    this.expenseMap = this.combinedMap.get("Expense")!;
+
+   }
 
 //Dates
   date: any;
