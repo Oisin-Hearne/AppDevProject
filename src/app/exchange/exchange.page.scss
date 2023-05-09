@@ -1,0 +1,21 @@
+ion-col {
+    text-align:center;
+    border: solid 1px black;
+    background-color: lightsteelblue;
+}
+
+#rates {
+    border: solid 1px black;
+    background-color: rgb(205, 220, 240);
+}
+
+ion-button {
+    max-height: min-content;
+}
+
+ion-grid {
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+    height: 75%;
+}

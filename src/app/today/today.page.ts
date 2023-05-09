@@ -112,7 +112,7 @@ export class TodayPage implements OnInit {
     this.month = this.date.getMonth()+1;
     this.year = this.date.getFullYear();
 
-    this.dateString = ""+this.day+"/"+this.month+"/"+this.year;
+    this.dateString = ""+this.day+"/"+this.month+"/"+this.year; //Format: 9/5/2023
   }
 
 }

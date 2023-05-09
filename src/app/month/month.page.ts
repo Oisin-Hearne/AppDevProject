@@ -47,8 +47,10 @@ export class MonthPage implements OnInit {
       //Gets the income and expense from the current date (if it exists), then increments a total and
       //puts them in a dailyIncome/Expense map used to display a total income/expense for that day.
 
+      this.incomeDailyTotal = 0;
+      this.expenseDailyTotal = 0;
+
       if(this.combinedMap.get("Income")) {
-        this.incomeDailyTotal = 0;
         this.incomeMap = this.combinedMap.get("Income")!;
 
         this.incomeMap.forEach((value, key) => {
@@ -60,7 +62,6 @@ export class MonthPage implements OnInit {
       }
         
       if(this.combinedMap.get("Expense")) {
-        this.expenseDailyTotal = 0;
         this.expenseMap = this.combinedMap.get("Expense")!;
 
         this.expenseMap.forEach((value, key) => {
@@ -109,10 +110,9 @@ validDates: string[] = [];
 setDateValue() {
   this.date = new Date();
   this.day = this.date.getDate();
-  this.month = this.date.getMonth()+1;
+  this.month = this.date.getMonth()+1; //Why on earth do javascript months start from 0
   this.year = this.date.getFullYear();
 
   this.dateString = this.month+"/"+this.year; //Date is only month/year in this page to work with loadMonth function.
-
 }
 }

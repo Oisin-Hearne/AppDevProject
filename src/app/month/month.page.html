@@ -31,9 +31,9 @@
           </ion-row>
         </ion-col>
         <ion-col style="background-color: transparent; border: 0px;">
-          <ion-row *ngFor="let x of dailyExpense | keyvalue">
-            <ion-col id="expenditure">{{x.key}}</ion-col>
-            <ion-col id="expenditure">{{x.value}}</ion-col>
+          <ion-row *ngFor="let y of dailyExpense | keyvalue">
+            <ion-col id="expenditure">{{y.key}}</ion-col>
+            <ion-col id="expenditure">{{y.value}}</ion-col>
           </ion-row>
         </ion-col>
       </ion-row>
