@@ -14,13 +14,30 @@
   </ion-header>
 
   <div id="container">
-    Welcome to IonBudget.<br>Please select a page below:
-    <br>
-    <ul style="list-style-type: none;">
-      <li><ion-button [routerLink]="['/month']">Month So Far</ion-button></li>
-      <li><ion-button [routerLink]="['/exchange']">Current Exchange Rates</ion-button></li>
-      <li><ion-button [routerLink]="['/today']">Today's Expenditure/Income</ion-button></li>
-    </ul>
+<ion-grid style="width:33%;">
+  <ion-row>
+    <ion-col><ion-text color="primary"><h1>Welcome to IonBudget<ion-icon slot="end" name="logo-ionic"></ion-icon></h1></ion-text></ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col><ion-text color="medium"><h5><i>Please select an option below...</i></h5></ion-text></ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-button expand="block" [routerLink]="['/today']">Today's Income/Expenses  <ion-icon slot="end" name="receipt-outline"></ion-icon></ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-button expand="block" [routerLink]="['/month']">Month So Far  <ion-icon slot="end" name="calendar-outline"></ion-icon></ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-button expand="block" [routerLink]="['/exchange']">Current Exchange Rates<ion-icon slot="end" name="analytics-outline"></ion-icon></ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
     
     
     

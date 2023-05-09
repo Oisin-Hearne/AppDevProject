@@ -1,12 +1,29 @@
 ion-col {
     text-align:center;
     border: solid 1px black;
-    background-color: lightsteelblue;
+    background-color: rgb(236, 243, 252);
+}
+
+#topleft {
+    border-top-left-radius: 5px;
+    
+}
+
+#topright {
+    border-top-right-radius: 5px;
+}
+
+#bottomleft {
+    border-bottom-left-radius: 5px;
+}
+
+#bottomright {
+    border-bottom-right-radius: 5px;
 }
 
 #rates {
     border: solid 1px black;
-    background-color: rgb(205, 220, 240);
+    background-color: rgb(239, 244, 250);
 }
 
 ion-button {

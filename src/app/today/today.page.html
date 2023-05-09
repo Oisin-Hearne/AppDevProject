@@ -20,17 +20,17 @@
 
     <ion-grid>
       <ion-row>
-        <ion-col><h3><u>Today's Budget - {{dateString}}</u></h3></ion-col>
+        <ion-col style="background-color: transparent; border: 0px;"><ion-text color="primary"><h1>Today's Budget - {{dateString}} <ion-icon name="receipt-outline"></ion-icon></h1></ion-text></ion-col>
       </ion-row>
       <ion-row>
-        <ion-col><h5>Income</h5></ion-col>
-        <ion-col><h5>Expenditure</h5></ion-col>
+        <ion-col id="topleft"><i>Income</i></ion-col>
+        <ion-col id="topright"><i>Expenditure</i></ion-col>
       </ion-row>
       <ion-row>
-        <ion-col>Item</ion-col>
-        <ion-col>€</ion-col>
-        <ion-col>Item</ion-col>
-        <ion-col>€</ion-col>
+        <ion-col style="font-size: small"><i>Item</i></ion-col>
+        <ion-col style="font-size: small"><i>€</i></ion-col>
+        <ion-col style="font-size: small"><i>Item</i></ion-col>
+        <ion-col style="font-size: small"><i>€</i></ion-col>
       </ion-row>
       <ion-row > 
         <ion-col style="background-color: transparent; border: 0px;">
@@ -49,8 +49,8 @@
     </ion-grid>
     <ion-grid>
       <ion-row>
-        <ion-col style="background-color: transparent; border: 0px;"><ion-button (click)="addIncome()">Add Income</ion-button></ion-col>
-        <ion-col style="background-color: transparent; border: 0px;"><ion-button (click)="addExpense()">Add Expense</ion-button></ion-col>
+        <ion-col id="bottomleft"><ion-button size="small" (click)="addIncome()">Add Income</ion-button></ion-col>
+        <ion-col id="bottomright"><ion-button size="small" (click)="addExpense()">Add Expense</ion-button></ion-col>
       </ion-row>
       <ion-row>
         <ion-col style="background-color: transparent; border: 0px;"><ion-button (click)="onSave()">{{saveStatus}}</ion-button></ion-col>

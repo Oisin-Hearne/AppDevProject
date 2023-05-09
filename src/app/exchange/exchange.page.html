@@ -16,21 +16,21 @@
 
     <ion-grid>
       <ion-row>
-        <ion-col><h3>Currencies</h3></ion-col>
-        <ion-col><h3>Exchange Rates</h3></ion-col>
+        <ion-col id="topleft"><h3>Currencies</h3></ion-col>
+        <ion-col id="topright"><h3>Exchange Rates</h3></ion-col>
       </ion-row>
       <ion-row>
         <ion-col><i>Press a currency below to view it's exchange rates.</i></ion-col>
         <ion-col><i>Every 1 {{activeCurrencyID}} is worth...</i></ion-col>
       </ion-row>
       <ion-row>
-        <ion-col>
+        <ion-col id="bottomleft">
           <ion-row *ngFor="let x of currencies | keyvalue">
             <ion-col id="rates"><ion-button shape="round" size="small" (click)="switchCurrencies(x.key)">{{x.key}}</ion-button></ion-col>
             <ion-col id="rates">{{x.value}}</ion-col>
           </ion-row>
         </ion-col>
-        <ion-col>
+        <ion-col id="bottomright">
           <ion-row *ngFor="let y of activeCurrency | keyvalue">
             <ion-col id="rates">{{y.value}}</ion-col>
             <ion-col id="rates">{{y.key}}</ion-col>
