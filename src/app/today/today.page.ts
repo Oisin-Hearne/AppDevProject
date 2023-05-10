@@ -17,7 +17,6 @@ export class TodayPage implements OnInit {
     private cd: ChangeDetectorRef,
     private str: Storage) { }
 
-  //why is javascript like this
   ngOnInit() {
     this.setDateValue();
     

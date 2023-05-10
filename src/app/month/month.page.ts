@@ -17,6 +17,7 @@ export class MonthPage implements OnInit {
   incomeDailyTotal: number = 0;
   expenseTotal: number = 0;
   expenseDailyTotal: number = 0;
+  dataFound: number = 0;
   tempDate: string ="";
 
   fileString: string = "";
@@ -36,21 +37,23 @@ export class MonthPage implements OnInit {
     //If there is, add to dailyIncome and dailyExpense to display to table.
     for(let i = 1; i <= 31; i++) {
       await this.str.get(i.toString()+"/"+this.dateString).then(result => {
-        if(result)
+        if(result) {
           this.combinedMap = result;
+          this.dataFound = 1;
+        }   
         else {
-          console.log("No data exists for "+i.toString()+"/"+this.dateString);
-          return;
+          {
+            console.log("No data exists for "+i.toString()+"/"+this.dateString);
+            this.dataFound = 0;
+          }
         }
 
       //These two if statements are much the same, though I wasn't sure how to collapse them into one.
       //Gets the income and expense from the current date (if it exists), then increments a total and
       //puts them in a dailyIncome/Expense map used to display a total income/expense for that day.
 
-      this.incomeDailyTotal = 0;
-      this.expenseDailyTotal = 0;
-
-      if(this.combinedMap.get("Income")) {
+      if(this.combinedMap.get("Income") && this.dataFound == 1) {
+        this.incomeDailyTotal = 0;
         this.incomeMap = this.combinedMap.get("Income")!;
 
         this.incomeMap.forEach((value, key) => {
@@ -58,10 +61,11 @@ export class MonthPage implements OnInit {
           this.incomeDailyTotal += +value;
         });
 
-        this.dailyIncome.set(i.toString()+"/"+this.dateString, this.incomeTotal);
+        this.dailyIncome.set(i.toString()+"/"+this.dateString, this.incomeDailyTotal);
       }
         
-      if(this.combinedMap.get("Expense")) {
+      if(this.combinedMap.get("Expense") && this.dataFound == 1) {
+        this.expenseDailyTotal = 0;
         this.expenseMap = this.combinedMap.get("Expense")!;
 
         this.expenseMap.forEach((value, key) => {
@@ -76,6 +80,7 @@ export class MonthPage implements OnInit {
   }
 
   //Creates a string for all the data and writes it to a file in the Documents directory, if it exists.
+  //I was unable to get the app to load onto a physical android device, so I'm unsure if this actually works. Hopefully it does though.
   async fileSave() {
 
     //Create string

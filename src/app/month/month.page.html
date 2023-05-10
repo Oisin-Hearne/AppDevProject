@@ -24,6 +24,7 @@
         <ion-col id="topright">€</ion-col>
       </ion-row>
       <ion-row>
+        <!-- I was unable to get this to display in an ordered way :( -->
         <ion-col style="background-color: transparent; border: 0px;">
           <ion-row *ngFor="let x of dailyIncome | keyvalue">
             <ion-col id="income">{{x.key}}</ion-col>
